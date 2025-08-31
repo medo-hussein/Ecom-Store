@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="productdetails.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+</head>
+<body>
+
+    <main class="container my-5">
+        <button id="back" class="mb-4 bg-transparent border-0 pointer-event"><i class="fas fa-arrow-left me-2"></i> Back</button>
+        <div id="product-details-content" class="row">
+            <!-- Product Gallery -->
+            <div class="col-md-6 product-gallery">
+                <div class="main-image-container mb-3">
+                    <img src="https://placehold.co/600x600/EFEFEF/AAAAAA?text=Loading..." id="mainImage" class="main-image" alt="Main Product Image">
+                </div>
+                <!-- Thumbnails will be loaded here by JS -->
+                <div id="thumbnails-container" class="thumbnails d-flex gap-2"></div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <p id="product-category" class="text-muted mb-1">Category</p>
+                <h1 id="product-title" class="h2 fw-bold">Loading Product...</h1>
+                <div class="d-flex align-items-center my-3">
+                    <div id="product-rating" class="text-warning"></div>
+                    <a href="#" id="product-reviews" class="ms-2 text-muted text-decoration-none">(0 reviews)</a>
+                </div>
+                <p id="product-price" class="h3 fw-light mb-3">$0.00</p>
+                <p id="product-description" class="text-muted">Loading description...</p>
+                <hr>
+                <div id="purchase-controls">
+                    <div class="d-flex align-items-center mb-4">
+                        <label for="quantity-input" class="form-label me-3 mb-0">Quantity</label>
+                        <div class="input-group" style="width: 130px;">
+                            <button class="btn btn-outline-secondary" type="button" id="minus-btn">-</button>
+                            <input type="text" class="form-control text-center" value="1" id="quantity-input" readonly>
+                            <button class="btn btn-outline-secondary" type="button" id="plus-btn">+</button>
+                        </div>
+                        <span id="product-stock" class="ms-3 text-muted"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button id="add-to-cart-btn" class="btn btn-dark btn-lg" type="button">
+                            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div id="related-products-section" class="mt-5 pt-5 border-top">
+            <h2 class="fw-bold mb-4">Related Products</h2>
+            <div class="products-grid">
+                <!-- Related products will be loaded here by JS -->
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/index.js"></script> <!-- بنستدعي الملف الرئيسي عشان نستخدم الدوال اللي جواه -->
+    <script src="productdetails.js"></script>
+</body>
+</html>

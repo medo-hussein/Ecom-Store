@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="../assets/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="./admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container py-4">
+    <button id="back" class="mb-4 bg-transparent border-0 pointer-event"><i class="fas fa-arrow-left me-2"></i> Back</button>
+    <h3 class="m-0 fw-bolder">Admin Panel</h3>
+    <p class="text-muted">Manage users, products, and system settings</p>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 my-4">
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Users</p>
+            <i class="fa-regular fa-user"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3" id="users-nums"></p>
+          <p id="users-status"></p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Products</p>
+            <i class="fa-solid fa-box"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3" id="products-num"></p>
+          <p id="products-status"></p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Revenue</p>
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3" id="price"></p>
+          <p id="revenue-status"></p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Active Sellers</p>
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3" id="sellers-nums"></p>
+          <p id="sellers-status"></p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs my-5" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+          role="tab" aria-controls="home-tab-pane" aria-selected="true">Products</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+          role="tab" aria-controls="profile-tab-pane" aria-selected="false">Users</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
+          role="tab" aria-controls="contact-tab-pane" aria-selected="false">Orders</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active p-1" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+        tabindex="0">
+        <h5 class="fw-bold">Product Management</h5>
+        <p class="text-muted mb-3">Manage all products across the platform</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover" id="productsTable">
+            <thead>
+              <tr>
+                <th class="text-muted">Product</th>
+                <th class="text-muted">Category</th>
+                <th class="text-muted">Price</th>
+                <th class="text-muted">Stock</th>
+                <th class="text-muted">Featured</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade p-1" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <h5 class="fw-bold">User Management</h5>
+        <p class="text-muted mb-3">Manage user accounts and permissions</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th class="text-muted">User</th>
+                <th class="text-muted">Email</th>
+                <th class="text-muted">Role</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade p-1" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+        <h5 class="fw-bold">Orders Management</h5>
+        <p class="text-muted mb-3">View and manage all customer orders across the platform</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th class="text-muted">Order</th>
+                <th class="text-muted">Customer</th>
+                <th class="text-muted">Total</th>
+                <th class="text-muted">Status</th>
+                <th class="text-muted">Date</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTable">
+             
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none overflow-auto">
+    <div class="bg-white p-3 rounded shadow-sm position-relative" style="width: 400px; max-height: 100vh;">
+      <i class="fa-solid fa-xmark close-edit"></i>
+
+      <!-- Title -->
+      <h4 class="fw-bold">Update Product</h4>
+      <p class="text-muted mb-4">Fill in the details to update the product.</p>
+
+      <!-- Form -->
+      <form>
+
+        <!-- Product Name -->
+        <div class="mb-3">
+          <label class="form-label">Product Name</label>
+          <input type="text" id="titleUpdated" class="form-control" placeholder="Enter product name" required>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label class="form-label">Price ($)</label>
+          <input type="number" id="priceUpdated" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select id="categoryUpdated" class="form-select" required>
+            <option selected disabled>Select category</option>
+            <option>Clothing</option>
+            <option>Fitness</option>
+            <option>Electronics</option>
+          </select>
+        </div>
+
+        <!-- Stock Quantity -->
+        <div class="mb-3">
+          <label class="form-label">Stock Quantity</label>
+          <input type="number" id="stockUpdated" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Buttons -->
+
+        <button type="submit" id="updateBtn" class="btn btn-dark me-auto">Update Product</button>
+
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="orderModal" class="custom-backdrop d-none">
+    <div class="custom-modal shadow">
+      <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+        <h5 class="m-0">Order Details - #ORD-002</h5>
+        <button id="closeOrder" class="btn-close"></button>
+      </div>
+
+      <p class="text-muted">Complete order information and management options</p>
+      <div class="row">
+        <!-- Left: Order Items -->
+        <div class="col-md-6">
+          <h6 class="my-1">Order Items</h6>
+          <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
+            <div>
+              <strong>Organic Cotton T-Shirt</strong><br>
+              <small>2 × $29.99</small>
+            </div>
+            <div class="ms-auto fw-bold">$59.98</div>
+          </div>
+          <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
+            <div>
+              <strong>Smart Fitness Watch</strong><br>
+              <small>1 × $299.99</small>
+            </div>
+            <div class="ms-auto fw-bold">$299.99</div>
+          </div>
+        </div>
+
+        <!-- Right: Customer Info -->
+        <div class="col-md-6">
+          <h6>Customer Information</h6>
+          <p class="mb-1"><strong>Name:</strong> Jane Customer</p>
+          <p class="mb-1"><strong>Email:</strong> customer@example.com</p>
+          <p class="mb-1"><strong>Payment:</strong> Credit Card (**** 5678)</p>
+
+          <h6 class="mt-3">Shipping Address</h6>
+          <p class="mb-1">Jane Customer</p>
+          <p class="mb-1">123 Main St</p>
+          <p>New York, NY 10001</p>
+
+          <h6 class="mt-3">Order Summary</h6>
+          <div class="d-flex justify-content-between"><span>Subtotal</span><span>$347.84</span></div>
+          <div class="d-flex justify-content-between"><span>Shipping</span><span>$9.99</span></div>
+          <div class="d-flex justify-content-between"><span>Tax</span><span>$31.12</span></div>
+          <hr>
+          <div class="d-flex justify-content-between fw-bold"><span>Total</span><span>$388.95</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="userModal" class="custom-backdrop d-none">
+    <div class="custom-modal shadow position-relative " style="max-width: 400px;">
+      <i class="fa-solid fa-xmark close-edit"></i>
+      <div>
+        <h6 class="mb-2 pb-1 border-bottom border-black border-1">User Information</h6>
+        <p class="mb-1"><strong>User Name:</strong> Jane Customer</p>
+        <p class="mb-1"><strong>Email:</strong> customer@example.com</p>
+        <p class="mb-1"><strong>Role:</strong> Customer</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="./admin.js" type="module"></script>
+</body>
+
+
+</html>
