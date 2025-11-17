@@ -2,8 +2,6 @@
 
 This project is a complete frontend for an e-commerce store built primarily with HTML, CSS, and JavaScript, utilizing Bootstrap 5 for responsive design. The project simulates a full user experience for an online store, from browsing products to completing the checkout process.
 
-[Insert a project screenshot here - you can take a screenshot of the homepage]
-
 ---
 
 ## ✨ Key Features
@@ -71,3 +69,4 @@ This is a frontend-only project and does not require complex installations.
 
 - **GitHub:** [@medo-hussein](https://github.com/medo-hussein)
 - **Email:** medoh745.ah@gmail.com
+
